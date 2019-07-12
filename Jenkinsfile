@@ -1,17 +1,21 @@
 pipeline {
 	      agent any	 
-	
-	      stages {
+
+ 	      stages {
                stage('Build') {
                         steps {
                             sh 'env'
                         }
                 }
-		      
-	       stage('Integration test') {
-			steps {
-			     sh 'serverless deploy --stage dev --region ap-south-1'					
+		            stage('Unit test') {
+			                  steps {				
+ 			                      sh 'npm install serverless-webpack --save-dev' // to ensure it is installed
+			                  }
+		            }			
+
+ 		            stage('Integration test') {
+			                  steps {
+				                    sh 'serverless deploy --stage dev --region ap-south-1'					
 			                  }
 		            }				
-	      }	
-}	 	
+	      }		 	
