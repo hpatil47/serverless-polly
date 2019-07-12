@@ -9,7 +9,7 @@ pipeline {
                 }		
 	                    stage('Unit test') {
 			                  steps {				
- 			                      sh 'npm install serverless-webpack --save-dev' // to ensure it is installed
+ 			                      sh 'npm install serverless-webpack' // to ensure it is installed
 			                  }
 		            }			
 	      
