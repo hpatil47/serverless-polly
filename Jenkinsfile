@@ -15,7 +15,7 @@ pipeline {
 	      
  		            stage('Integration test') {
 			                  steps {
-				                    sh 'serverless deploy --stage dev --region ap-south-1'					
+				                    sh 'serverless remove --stage dev --region ap-south-1'					
 			                  }
 		            }				
 	      }		 	
