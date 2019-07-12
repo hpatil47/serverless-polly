@@ -128,17 +128,5 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-    StaticBucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        AccessControl: PublicRead
-        WebsiteConfiguration:
-          IndexDocument: index.html
-          ErrorDocument: index.html
-    AudioBucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        AccessControl: PublicRead
-
 custom:
   webpackIncludeModules: true
