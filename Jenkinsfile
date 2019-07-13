@@ -9,7 +9,7 @@ pipeline {
                 }		
  		            stage('Integration test') {
 			                  steps {
-				                    sh 'serverless remove --stage dev --region ap-south-1'					
+				                    sh 'serverless dploy --stage dev --region ap-south-1'					
 			                  }
 		            }				
 	      }		 	
