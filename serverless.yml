@@ -103,6 +103,13 @@ functions:
             Fn::GetAtt:
               - PollyTable
               - StreamArn
+  requestUploadURL:
+    handler: handler.requestUploadURL
+    events:
+      - http:
+          path: requestUploadURL
+          method: post
+          cors: true
     environment:
       tableName:
         Ref: PollyTable
@@ -137,6 +144,23 @@ resources:
       Type: AWS::S3::Bucket	
       Properties:	
         AccessControl: PublicRead
+    UploadBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName:
+           Value: !Ref 'StaticBucket'
+        AccessControl: PublicRead
+        CorsConfiguration:
+          CorsRules:
+          - AllowedMethods:
+            - GET
+            - PUT
+            - POST
+            - HEAD
+            AllowedOrigins:
+            - "*"
+            AllowedHeaders:
+            - "*"
         
 custom:
   webpackIncludeModules: true
