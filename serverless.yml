@@ -13,10 +13,6 @@ provider:
   iamRoleStatements:
     - Effect: "Allow"
       Action:
-        - "s3:*"
-      Resource: "arn:aws:s3:::*"
-    - Effect: "Allow"
-      Action:
         - "s3:PutObject"
         - "s3:PutObjectAcl"
       Resource:
@@ -107,13 +103,6 @@ functions:
             Fn::GetAtt:
               - PollyTable
               - StreamArn
-  requestUploadURL:
-    handler: handler.requestUploadURL
-    events:
-      - http:
-          path: requestUploadURL
-          method: post
-          cors: true
     environment:
       tableName:
         Ref: PollyTable
@@ -148,23 +137,6 @@ resources:
       Type: AWS::S3::Bucket	
       Properties:	
         AccessControl: PublicRead
-    UploadBucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        BucketName:
-           Value: !Ref 'StaticBucket'
-        AccessControl: PublicRead
-        CorsConfiguration:
-          CorsRules:
-          - AllowedMethods:
-            - GET
-            - PUT
-            - POST
-            - HEAD
-            AllowedOrigins:
-            - "*"
-            AllowedHeaders:
-            - "*"
-        
+    
 custom:
   webpackIncludeModules: true
